@@ -24,12 +24,13 @@ services:
     environment:
       FLASK_APP: app.py
       FLASK_RUN_HOST: 0.0.0.0
-      DB_HOST: db          # service name from above
-      DB_USER: flaskuser
-      DB_PASSWORD: flaskpass
-      DB_NAME: bucketlist
+      MYSQL_DATABASE_USER: flaskuser
+      MYSQL_DATABASE_PASSWORD: flaskpass
+      MYSQL_DATABASE_DB: bucketlist
+      MYSQL_DATABASE_HOST: db   # service name of MySQL container
     ports:
       - "5002:5002"
+
     networks:
       - flasknet
 
