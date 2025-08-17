@@ -1,41 +1,30 @@
-version: "3.8"
+version: "3"
 
 services:
   db:
-    build: ./mysql
-    container_name: mysql-db
+    image: mohamedtarek5/sqlapp:latest
+    container_name: mysql_db
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: bucketlist   # must match your app config
+      MYSQL_DATABASE: bucketlist
       MYSQL_USER: flaskuser
       MYSQL_PASSWORD: flaskpass
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
-    networks:
-      - flasknet
 
-  web:
-    build: ./flaskapp
-    container_name: flask-app
+  flask:
+    image: mohamedtarek5/myflaskapp:latest
+    container_name: flask_app
+    restart: always
+    ports:
+      - "5002:5002"
     depends_on:
       - db
     environment:
-      FLASK_APP: app.py
-      FLASK_RUN_HOST: 0.0.0.0
-      MYSQL_DATABASE_USER: flaskuser
-      MYSQL_DATABASE_PASSWORD: flaskpass
-      MYSQL_DATABASE_DB: bucketlist
-      MYSQL_DATABASE_HOST: db   # service name of MySQL container
-    ports:
-      - "5002:5002"
-
-    networks:
-      - flasknet
-
-networks:
-  flasknet:
+      DATABASE_URL: "mysql+pymysql://flaskuser:flaskpass@db:3306/bucketlist"
 
 volumes:
   db_data:

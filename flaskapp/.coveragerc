@@ -1,0 +1,9 @@
+[run]
+source = .
+
+[report]
+omit =
+    */usr/*
+    */.local/*
+    */dist-packages/*
+    *test_app.py
