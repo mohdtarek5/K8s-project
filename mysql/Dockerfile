@@ -1,5 +1,5 @@
 FROM mysql:latest 
 ENV MYSQL_ROOT_PASSWORD=root 
-COPY ./BucketList.sql / docker-entrypoint-initdb.d/
+COPY ./BucketList.sql /docker-entrypoint-initdb.d/
 EXPOSE 3306
 

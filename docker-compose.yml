@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: bucketlist
+      MYSQL_DATABASE: BucketList
       MYSQL_USER: flaskuser
       MYSQL_PASSWORD: flaskpass
     ports:
